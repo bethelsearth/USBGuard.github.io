@@ -1,6 +1,6 @@
 Add-Type -AssemblyName System.Windows.Forms
 
-$Password = "EqualEarth111EncryptionKey2580"
+$Password = "YourPasswordEncryptionKey76830"
 $7ZipPath = "C:\Program Files\7-Zip\7z.exe"
 $Global:Authorized = $false
 
@@ -26,7 +26,7 @@ $watcher.Path = "C:\Scripts"
 $watcher.IncludeSubdirectories = $true
 $watcher.EnableRaisingEvents = $false
 
-# Function to Toast Notifications so you get native desktop pop-up alerts whenever protection toggles or files are encrypted.
+# Function to Toast Notifications so you get native desktop pop-up alerts whenever protection toggles, or files are encrypted.
 function Show-Toast {
     param($Title, $Message)
     [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] | Out-Null

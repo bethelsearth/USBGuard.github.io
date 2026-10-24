@@ -29,14 +29,10 @@ $watcher.EnableRaisingEvents = $false
 # Function to Toast Notifications so you get native desktop pop-up alerts whenever protection toggles, or files are encrypted.
 function Show-Toast {
     param($Title, $Message)
-    [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] | Out-Null
-    $template = [Windows.UI.Notifications.ToastTemplateType]::ToastText02
-    $xml = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent($template)
-    $text = $xml.GetElementsByTagName("text")
-    $text[0].AppendChild($xml.CreateTextNode($Title)) | Out-Null
-    $text[1].AppendChild($xml.CreateTextNode($Message)) | Out-Null
-    $toast = [Windows.UI.Notifications.ToastNotification]::new($xml)
-    [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier("USBGuard").Show($toast)
+    $global:trayIcon = New-Object System.Windows.Forms.NotifyIcon
+    $global:trayIcon.Icon = [System.Drawing.SystemIcons]::Shield
+    $global:trayIcon.Visible = $true
+    $global:trayIcon.ShowBalloonTip(3000, $Title, $Message, [System.Windows.Forms.ToolTipIcon]::Info)
 }
 
 # Function to encrypt newly created/copied files
